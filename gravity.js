@@ -63,17 +63,22 @@ let acumulatedAcceleration = 0
 let ballIsMoving = true
 let sense = -1
 let speed = 0
+let spacebarPressed = false
 
 window.onkeydown = function (e) {
     // 32 is the spacebar
     if (e.keyCode === 32) {
-        // acceleration = .05
+        spacebarPressed = true
+        acceleration = .05
         speed = 5
     }
 }
 
 setInterval(() => {
-    acumulatedAcceleration += acceleration
+    if (spacebarPressed)    {
+        acumulatedAcceleration += acceleration
+        // console.log(acumulatedAcceleration)
+    }
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
     ctx.rect(w2 - 100, h2 + 300, 200, 10)
@@ -82,7 +87,10 @@ setInterval(() => {
     
     ctx.save();
     let finalYPosition = posY+= (speed * sense)
-    //finalYPosition *= acumulatedAcceleration
+
+    if (spacebarPressed)    {
+        finalYPosition -= acumulatedAcceleration
+    }
 
     // debugger
 
@@ -100,7 +108,7 @@ setInterval(() => {
     //     ctx.translate(w2, 0 + finalYPosition)
     // }
 
-    ctx.translate(w2, 0 + finalYPosition)
+    ctx.translate(w2, finalYPosition)
 
     // END with boundary detection
     
