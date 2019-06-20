@@ -58,9 +58,12 @@ let circleRadius = 25
 let boxPositionBoundary = h2 + 300 - (circleRadius)
 let posY = boxPositionBoundary
 // debugger
-let acceleration = 0
-let acumulatedAcceleration = 0
+
 let ballIsMoving = true
+
+// earth gravity
+let acceleration
+let acumulatedAcceleration = 0
 let sense = -1
 let speed = 0
 let spacebarPressed = false
@@ -69,15 +72,14 @@ window.onkeydown = function (e) {
     // 32 is the spacebar
     if (e.keyCode === 32) {
         spacebarPressed = true
-        acceleration = .05
-        speed = 5
+        acceleration = 9.8 / 100
+        speed = 8
     }
 }
 
 setInterval(() => {
     if (spacebarPressed)    {
-        acumulatedAcceleration += acceleration
-        // console.log(acumulatedAcceleration)
+        acumulatedAcceleration += acceleration        // console.log(acumulatedAcceleration)
     }
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
@@ -86,39 +88,16 @@ setInterval(() => {
     ctx.closePath();
     
     ctx.save();
-    let finalYPosition = posY+= (speed * sense)
 
-    if (spacebarPressed)    {
-        finalYPosition -= acumulatedAcceleration
+    let finalYPosition = posY+= ((speed - acumulatedAcceleration) * sense)
+
+    if (finalYPosition > boxPositionBoundary) {
+        speed = 0;
+        acumulatedAcceleration = 0
+        spacebarPressed = false
+        finalYPosition = boxPositionBoundary
     }
-
-    // debugger
-
-    // with boundary detection
-    
-    // if (finalYPosition >= boxPositionBoundary) {
-    //     ballIsMoving = false
-    //     ctx.translate(w2, boxPositionBoundary)
-
-    //     //wiggle effect
-    //     //  ctx.translate(w2 + Math.random() * 3, boxPositionBoundary + Math.random() * 3)
-    // }
-
-    // if (ballIsMoving) {
-    //     ctx.translate(w2, 0 + finalYPosition)
-    // }
-
     ctx.translate(w2, finalYPosition)
-
-    // END with boundary detection
-    
-
-    // with bounce effect
-    // if (finalYPosition >= boxPositionBoundary) sense = -1
-
-    // ctx.translate(w2, 0 + finalYPosition)
-
-    // END bounce effect
 
     ctx.beginPath();
     ctx.arc(0, 0, circleRadius, 0, PI_DOUBLE);
