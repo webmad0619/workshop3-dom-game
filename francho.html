@@ -39,6 +39,7 @@
     </div>
 
     <script>
+        // do a zebra style using DOM selectors
         [...document.querySelectorAll(".item")].forEach((li, idx) => {
             if (idx % 2) {
                 li.style.color = "red"
@@ -49,13 +50,12 @@
 
         var items = [...document.querySelectorAll(".item")]
 
+        // colorize one parent item starting in a two-levels deep children
         items[0].parentNode.parentNode.querySelector("h1").style.color = "green"
 
         // console.log(document.querySelector("h1").childNodes[0])
+        // select all divs containing an h1
         console.log(document.querySelectorAll("div h1"))
-
-        
-
     </script>
 </body>
 
