@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h1>Hola padre</h1>
+        <div>
+            <h1>Hola hijo</h1>
+            <ul>
+                <li class="item item-1">Lorem ipsum dolor sit amet.</li>
+                <li class="item item-2">Aspernatur laboriosam quidem corrupti alias.</li>
+                <li class="item item-3">Ab eveniet fugiat id odit.</li>
+                <li class="item item-4">Reprehenderit esse ex error quisquam!</li>
+                <li class="item item-5">Deserunt adipisci saepe expedita sit?</li>
+                <li class="item item-6">Explicabo consectetur rem ipsa fuga.</li>
+                <li class="item item-7">Libero corporis soluta recusandae esse?</li>
+                <li class="item item-8">Cumque neque magnam dicta minus.</li>
+                <li class="item item-9">Exercitationem accusamus in corrupti dicta?</li>
+                <li class="item item-10">Neque hic vero alias necessitatibus!</li>
+                <li class="item item-11">Impedit sint neque facilis sed!</li>
+                <li class="item item-12">Ab cupiditate quos numquam ipsum?</li>
+                <li class="item item-13">Debitis, optio aliquid. Facilis, ipsum.</li>
+                <li class="item item-14">Dolorum deleniti impedit provident ipsam?</li>
+                <li class="item item-15">Ut veniam cum unde autem.</li>
+                <li class="item item-16">Commodi ullam quas voluptates iusto!</li>
+                <li class="item item-17">Quas tenetur ea ut velit.</li>
+                <li class="item item-18">Incidunt, sequi vel. Enim, pariatur?</li>
+                <li class="item item-19">Totam repudiandae est enim tempore.</li>
+                <li class="item item-20">Cumque veniam dolores maiores dignissimos.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        [...document.querySelectorAll(".item")].forEach((li, idx) => {
+            if (idx % 2) {
+                li.style.color = "red"
+            } else {
+                li.style.color = "green"
+            }
+        })
+
+        var items = [...document.querySelectorAll(".item")]
+
+        items[0].parentNode.parentNode.querySelector("h1").style.color = "green"
+
+        // console.log(document.querySelector("h1").childNodes[0])
+        console.log(document.querySelectorAll("div h1"))
+
+        
+
+    </script>
+</body>
+
+</html>
